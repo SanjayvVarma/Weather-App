@@ -1,7 +1,113 @@
-.app{
+.weather-containter {
+    border: 2px solid gray;
+    height: 600px;
+}
+
+.app {
     width: 100%;
     color: white;
     text-align: center;
     padding: 25px;
     background-color: #4472C4;
+}
+
+.app-container {
+    display: flex;
+    gap: 20px;
+}
+
+.vl {
+    border-left: 6px solid #000000;
+    height: 521px;
+    left: 50%;
+}
+
+.search {
+    display: flex;
+    width: fit-content;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+
+.search input {
+    border: none;
+    width: 500px;
+    padding: 10px;
+    outline: none;
+}
+
+.search button {
+    border: none;
+    padding: 10px 40px;
+    color: #ffffff;
+    background-color: #4472C4;
+}
+
+
+/* citylist css */
+
+.citylist {
+    margin: 20px 70px;
+}
+
+.citylist-btn {
+    padding: 10px 45px;
+    font-size: 15px;
+    color: #ffffff;
+    border-radius: 5px;
+    background-color: #4472C4;
+}
+
+.citylist-btn:hover {
+    background-color: #578ce6;
+}
+
+
+.city-name {
+    padding: 5px;
+    margin-top: 5px;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #4472C4;
+}
+
+.citylist-li {
+    padding: 5px;
+    font-size: 20px;
+    list-style: none;
+    border: 1px solid #000000;
+}
+
+.lightgreen {
+    border: 3px solid rgb(90, 229, 90),
+}
+
+/* details css */
+
+.details-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.details-container table{
+    border: 1px solid #000000;
+}
+
+.details-container .tablerow {
+    background-color: #4472C4;
+    color: #ffffff;
+}
+
+.details-container tr th {
+    padding: 10px 32px;
+}
+
+
+.yellow {
+    background-color: yellow;
+}
+
+.white{
+    background-color: #ffffff;
 }

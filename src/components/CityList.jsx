@@ -1,16 +1,17 @@
 import React from 'react';
 
-const CityList = ({ cities, onGetWeather, weatherData }) => {
+const CityList = ({ cities, handleGetWeather, weatherData }) => {
+
   return (
-    <div>
-      <h2>City List</h2>
-      <button onClick={onGetWeather}>Get Weather</button>
+    <div className='citylist'>
+      <button className='citylist-btn' onClick={handleGetWeather}>Get Weather</button>
+      <h3 className='city-name'>City</h3>
       <ul>
         {
           cities.map((city, index) => {
             const cityHasData = weatherData.some(item => item.city === city);
             return (
-              <li key={index}> {city} </li>
+              <li key={index} className={`citylist-li ${cityHasData ? 'lightgreen' : 'white'}`}> {city} </li>
             );
           })
         }
