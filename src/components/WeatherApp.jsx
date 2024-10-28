@@ -45,13 +45,10 @@ const WeatherApp = () => {
     setWeatherData((prev) => {
         const updatedWeatherData = prev.filter(item => item.city !== city);
         
-        // Check if the deleted city was the currently selected city
         if (city === cities[currentCityIndex]) {
-            // Reset the currentCityIndex to the previous valid city index
             const newIndex = currentCityIndex > 0 ? currentCityIndex - 1 : -1;
             setCurrentCityIndex(newIndex);
         }
-        
         return updatedWeatherData;
     });
 };
