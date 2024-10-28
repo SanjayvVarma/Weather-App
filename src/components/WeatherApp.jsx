@@ -4,26 +4,21 @@ import WeatherDetails from './WeatherDetails';
 
 const WeatherApp = () => {
     const [weatherData, setWeatherData] = useState([]);
-    const [currentCityIndex, setCurrentCityIndex] = useState(-1);
+    const [currentCityIndex, setCurrentCityIndex] = useState(0); // Start from 0
     const [searchTerm, setSearchTerm] = useState('');
     const [highlightedCity, setHighlightedCity] = useState('');
 
     const cities = ["London", "Los Angeles", "New York", "Las Vegas"];
 
     const handleGetWeather = async () => {
-        if (  currentCityIndex < cities.length - 1   ) {
-            const nextCityIndex = currentCityIndex + 1;
-            const city = cities[nextCityIndex];
-            setCurrentCityIndex(nextCityIndex);
-
+        if (currentCityIndex >= 0 && currentCityIndex < cities.length) {
+            const city = cities[currentCityIndex];
             const res = await fetch(`https://python3-dot-parul-arena-2.appspot.com/test?cityname=${city}`);
             const data = await res.json();
 
             const dataAge = Math.abs(new Date() - new Date(data.date_and_time)) / 3600000;
 
-            const cityExists = weatherData.some((item) => (
-                item.city === city
-            ));
+            const cityExists = weatherData.some(item => item.city === city);
 
             if (!cityExists) {
                 setWeatherData(prev => [
@@ -42,22 +37,25 @@ const WeatherApp = () => {
     };
 
     const handleDelete = (city) => {
-    setWeatherData((prev) => {
-        const updatedData = prev.filter(item => item.city !== city);
-        if (updatedData.length === 0) {
-            setCurrentCityIndex(-1); 
-        } else if (currentCityIndex >= updatedData.length) {
-            setCurrentCityIndex(updatedData.length - 1); 
-        }
-        return updatedData;
-    });
-};
+        setWeatherData((prev) => {
+            const updatedData = prev.filter(item => item.city !== city);
+            const cityIndex = cities.indexOf(city);
+            
+            // Adjust currentCityIndex after deletion
+            if (currentCityIndex === cityIndex) {
+                // If current city was deleted, set to the next valid city or reset
+                if (updatedData.length > 0) {
+                    setCurrentCityIndex(currentCityIndex >= updatedData.length ? updatedData.length - 1 : currentCityIndex);
+                } else {
+                    setCurrentCityIndex(-1); // No cities left
+                }
+            }
+            return updatedData;
+        });
+    };
 
     const handleSearch = () => {
-        const foundCity = weatherData.find((item) => (
-            item.city.toLowerCase() === searchTerm.toLowerCase()
-        ));
-
+        const foundCity = weatherData.find(item => item.city.toLowerCase() === searchTerm.toLowerCase());
         if (foundCity) {
             setHighlightedCity(foundCity.city);
             setTimeout(() => setHighlightedCity(''), 3000);
