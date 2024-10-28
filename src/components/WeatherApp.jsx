@@ -63,7 +63,7 @@ const WeatherApp = () => {
             <div>
                 <CityList cities={cities} handleGetWeather={handleGetWeather} weatherData={weatherData} />
             </div>
-            <div class="vl"></div>
+            <div className="vl"></div>
             <div className='search-container'>
                 <div className="search">
                     <input

@@ -27,6 +27,7 @@
     width: fit-content;
     border: 1px solid #000000;
     border-radius: 5px;
+    margin: 20px 0 20px 29rem;
 }
 
 .search input {
@@ -43,6 +44,10 @@
     background-color: #4472C4;
 }
 
+.search button:hover {
+    background-color: #6790d6;
+    cursor: pointer;
+}
 
 /* citylist css */
 
@@ -60,6 +65,7 @@
 
 .citylist-btn:hover {
     background-color: #578ce6;
+    cursor: pointer;
 }
 
 
@@ -88,10 +94,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
-.details-container table{
-    border: 1px solid #000000;
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
 }
 
 .details-container .tablerow {
@@ -108,6 +118,102 @@
     background-color: yellow;
 }
 
-.white{
+.white {
     background-color: #ffffff;
+}
+
+.nodata {
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.item-row {
+    font-size: 18px;
+}
+
+.item-row td {
+    padding: 10px 20px;
+}
+
+.deletebtn {
+    background-color: red;
+    color: #ffffff;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.deletebtn:hover {
+    background-color: rgb(213, 67, 67);
+}
+
+/* Responsive CSS */
+
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .vl {
+        display: none;
+    }
+
+    .search input {
+        width: 200px;
+    }
+
+    .search button {
+        padding: 5px 10px;
+    }
+
+    .citylist {
+        margin: 10px auto;
+    }
+
+    .citylist-btn {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+
+    .details-container tr th,
+    .item-row td {
+        padding: 4px 8px;
+    }
+
+    .nodata {
+        font-size: 20px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .search input {
+        width: 100px;
+    }
+
+    .search button {
+        padding: 5px;
+    }
+
+    .citylist-btn {
+        padding: 2px 5px;
+        font-size: 10px;
+    }
+
+    .city-name,
+    .citylist-li {
+        font-size: 13px;
+    }
+
+    .details-container tr th,
+    .item-row td {
+        padding: 1px 3px;
+    }
+
+    .nodata {
+        font-size: 18px;
+    }
 }

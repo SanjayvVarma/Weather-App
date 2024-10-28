@@ -9,9 +9,9 @@ const WeatherDetails = ({ data, onDelete, highlightedCity }) => {
                 <thead>
                     <tr className='tablerow'>
                         <th>City</th>
+                        <th>Description</th>
                         <th>Temperature (°C)</th>
                         <th>Pressure (hPa)</th>
-                        <th>Description</th>
                         <th>Humidity (%)</th>
                         <th>Data Age (hours)</th>
                         <th>Actions</th>
@@ -20,23 +20,22 @@ const WeatherDetails = ({ data, onDelete, highlightedCity }) => {
                 <tbody>
                     {
                         data.length === 0 ? (
-                           <div>
-                             <p className='nodata'>No Data</p>
-                           </div>
+                            <tr>
+                                <td colSpan="7" className='nodata'>
+                                    No Data
+                                </td>
+                            </tr>
                         ) : (
                             data.map((item, index) => (
-                                <tr 
-                                    key={index}
-                                    className={`${highlightedCity === item.city ? 'yellow' : 'white'}`}
-                                >
+                                <tr key={index} className={`item-row ${highlightedCity === item.city ? 'yellow' : 'white'}`}>
                                     <td>{item.city}</td>
+                                    <td>{item.description}</td>
                                     <td>{item.temperature}</td>
                                     <td>{item.pressure}</td>
-                                    <td>{item.description}</td>
                                     <td>{item.humidity}</td>
                                     <td>{item.dataAge}</td>
                                     <td>
-                                        <button onClick={() => onDelete(item.city)}>Delete</button>
+                                        <button className='deletebtn' onClick={() => onDelete(item.city)}>Delete</button>
                                     </td>
                                 </tr>
                             ))
