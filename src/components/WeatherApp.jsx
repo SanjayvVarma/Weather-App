@@ -43,13 +43,13 @@ const WeatherApp = () => {
 
     const handleDelete = (city) => {
     setWeatherData((prev) => {
-        const updatedWeatherData = prev.filter(item => item.city !== city);
-        
-        if (city === cities[currentCityIndex]) {
-            const newIndex = currentCityIndex > 0 ? currentCityIndex - 1 : -1;
-            setCurrentCityIndex(newIndex);
+        const updatedData = prev.filter(item => item.city !== city);
+        if (updatedData.length === 0) {
+            setCurrentCityIndex(-1); 
+        } else if (currentCityIndex >= updatedData.length) {
+            setCurrentCityIndex(updatedData.length - 1); 
         }
-        return updatedWeatherData;
+        return updatedData;
     });
 };
 
