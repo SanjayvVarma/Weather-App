@@ -11,7 +11,7 @@ const WeatherApp = () => {
     const cities = ["London", "Los Angeles", "New York", "Las Vegas"];
 
     const handleGetWeather = async () => {
-        if (currentCityIndex < cities.length - 1) {
+        if (currentCityIndex >= 0 && currentCityIndex < cities.length) {
             const nextCityIndex = currentCityIndex + 1;
             const city = cities[nextCityIndex];
             setCurrentCityIndex(nextCityIndex);
