@@ -4,54 +4,41 @@ import WeatherDetails from './WeatherDetails';
 
 const WeatherApp = () => {
     const [weatherData, setWeatherData] = useState([]);
-    const [currentCityIndex, setCurrentCityIndex] = useState(-1);
     const [searchTerm, setSearchTerm] = useState('');
     const [highlightedCity, setHighlightedCity] = useState('');
 
     const cities = ["London", "Los Angeles", "New York", "Las Vegas"];
 
     const handleGetWeather = async () => {
-        if (  currentCityIndex < cities.length - 1   ) {
-            const nextCityIndex = currentCityIndex + 1;
-            const city = cities[nextCityIndex];
-            setCurrentCityIndex(nextCityIndex);
+        const nextCity = cities.find((city) =>
+            !weatherData.some((item) => item.city === city)
+        );
 
-            const res = await fetch(`https://python3-dot-parul-arena-2.appspot.com/test?cityname=${city}`);
+        if (nextCity) {
+            const res = await fetch(`https://python3-dot-parul-arena-2.appspot.com/test?cityname=${nextCity}`);
             const data = await res.json();
 
             const dataAge = Math.abs(new Date() - new Date(data.date_and_time)) / 3600000;
 
-            const cityExists = weatherData.some((item) => (
-                item.city === city
-            ));
-
-            if (!cityExists) {
-                setWeatherData(prev => [
-                    ...prev,
-                    {
-                        city,
-                        temperature: data.temp_in_celsius,
-                        humidity: data.humidity_in_percent,
-                        description: data.description,
-                        pressure: data.pressure_in_hPa,
-                        dataAge: dataAge.toFixed(2),
-                    }
-                ]);
-            }
+            setWeatherData(prev => [
+                ...prev,
+                {
+                    city: nextCity,
+                    temperature: data.temp_in_celsius,
+                    humidity: data.humidity_in_percent,
+                    description: data.description,
+                    pressure: data.pressure_in_hPa,
+                    dataAge: dataAge.toFixed(2),
+                }
+            ]);
         }
     };
 
     const handleDelete = (city) => {
-    setWeatherData((prev) => {
-        const updatedData = prev.filter(item => item.city !== city);
-        if (updatedData.length === 0) {
-            setCurrentCityIndex(-1); 
-        } else if (currentCityIndex >= updatedData.length) {
-            setCurrentCityIndex(updatedData.length - 1); 
-        }
-        return updatedData;
-    });
-};
+        setWeatherData(prev => (
+            prev.filter(item => item.city !== city)
+        ));
+    };
 
     const handleSearch = () => {
         const foundCity = weatherData.find((item) => (
