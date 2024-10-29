@@ -190,6 +190,11 @@ td {
 
 
 @media (max-width: 480px) {
+    .app-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
     .search input {
         width: 100px;
     }
@@ -205,7 +210,7 @@ td {
 
     .city-name,
     .citylist-li {
-        font-size: 13px;
+        font-size: 10px;
     }
 
     .details-container tr th,
