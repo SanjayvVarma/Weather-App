@@ -8,6 +8,11 @@ The Sanjay Weather App is a weather application built using React. It allows use
 
 You can access the live demo of the project here: [Weather App](https://weather-app-jet-two.vercel.app/)
 
+## ▶️ Demo Video
+
+[Watch the Demo](https://drive.google.com/file/d/1nc8plNuiFF4auetVnS7is_DOyGqf7-rz/view?usp=sharing)
+
+
 ## Features
 - **Add City Weather**: Click the "Get Weather" button to fetch current weather data for a predefined list of cities.
 - **Search City**: A search bar lets you find specific cities in the weather data.
