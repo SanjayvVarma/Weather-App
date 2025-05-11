@@ -49,6 +49,14 @@
     cursor: pointer;
 }
 
+.description-input {
+    width: 100%;
+    padding: 4px;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 /* citylist css */
 
 .citylist {

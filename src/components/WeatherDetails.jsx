@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WeatherDetails = ({ data, onDelete, highlightedCity }) => {
+const WeatherDetails = ({ data, onDelete, highlightedCity, onUpdateDescription }) => {
 
 
     return (
@@ -29,7 +29,14 @@ const WeatherDetails = ({ data, onDelete, highlightedCity }) => {
                             data.map((item, index) => (
                                 <tr key={index} className={`item-row ${highlightedCity === item.city ? 'yellow' : 'white'}`}>
                                     <td>{item.city}</td>
-                                    <td>{item.description}</td>
+                                    <td>
+                                        <input
+                                            type="text"
+                                            value={item.description}
+                                            onChange={(e) => onUpdateDescription(item.city, e.target.value)}
+                                            className="description-input"
+                                        />
+                                    </td>
                                     <td>{item.temperature}</td>
                                     <td>{item.pressure}</td>
                                     <td>{item.humidity}</td>

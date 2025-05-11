@@ -51,6 +51,14 @@ const WeatherApp = () => {
         }
     };
 
+    const handleUpdateDescription = (city, newDescription) => {
+        setWeatherData(prev =>
+            prev.map(item =>
+                item.city === city ? { ...item, description: newDescription } : item
+            )
+        );
+    };
+
     return (
         <div className="app-container">
             <div>
@@ -71,8 +79,8 @@ const WeatherApp = () => {
                         </svg>
                     </button>
                 </div>
-                <div>
-                    <WeatherDetails data={weatherData} onDelete={handleDelete} highlightedCity={highlightedCity} />
+                <div >
+                    <WeatherDetails onUpdateDescription={handleUpdateDescription} data={weatherData} onDelete={handleDelete} highlightedCity={highlightedCity} />
                 </div>
             </div>
         </div>
